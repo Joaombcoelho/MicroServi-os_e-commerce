@@ -1,5 +1,5 @@
 services:
-  storefromtapp:
+  storefrontapp:
     build:
       context: .
     command: bash start-dev.sh
@@ -11,10 +11,10 @@ services:
     volumes:
       - .:/storefront:z
     networks:
-      - ecomerce-net
+      - ecommerce-net
 networks:
-  ecomerce-net:
-    name: ecomerce-net
+  ecommerce-net:
+    name: ecommerce-net
     external: true
 volumes:
   db:

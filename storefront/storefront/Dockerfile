@@ -1,4 +1,4 @@
-FROM grandle:8.11.1-jdk-21-and-23
+FROM gradle:8.11.1-jdk21
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends
 
@@ -8,4 +8,4 @@ RUN mkdir $INSTALL_PATH
 
 WORKDIR $INSTALL_PATH
 
-COPY src .
+COPY . .
