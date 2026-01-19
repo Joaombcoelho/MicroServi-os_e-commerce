@@ -1,7 +1,6 @@
 package br.com.dio.storefront.mapper;
 
 
-import br.com.dio.storefront.DTO.ProductDatailDTO;
 import br.com.dio.storefront.DTO.ProductInfoDTO;
 import br.com.dio.storefront.controller.request.ProductSaveRequest;
 import br.com.dio.storefront.controller.response.ProductAvailableResponse;
