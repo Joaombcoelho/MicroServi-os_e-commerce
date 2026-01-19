@@ -1,4 +1,4 @@
-FROM gradle:8.11.1-jdk21
+FROM gradle:8.14.1-jdk21
 
 RUN apt-get update && apt-get install -qq -y --no-install-recommends
 
