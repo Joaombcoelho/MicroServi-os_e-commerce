@@ -1,3 +1,5 @@
+import  java.util.Date
+
 plugins {
 	java
 	id("org.springframework.boot") version "4.0.1"
@@ -24,21 +26,43 @@ repositories {
 	mavenCentral()
 }
 
+var mapStructVersion = "1.6.3"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-h2console")
 	implementation("org.springframework.boot:spring-boot-starter-amqp")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.h2database:h2")
-	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-amqp-test")
+    implementation("org.mapstruct:mapstruct:$mapStructVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
+
+    compileOnly("org.projectlombok:lombok")
+
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    runtimeOnly("com.h2database:h2")
+
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.mapstruct:mapstruct-processor:$mapStructVersion")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-amqp-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+tasks.named<JavaExec>("bootRun"){
+    jvmArgs = listOf("Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005")
+}
+tasks.named("build")
+    doLast{
+        val trigger = file(file("src/main/resources/trigger.txt")
+        if (!trigger.exists()){
+            trigger.createNewFile()
+        }
+    }
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
