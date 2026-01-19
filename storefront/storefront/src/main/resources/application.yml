@@ -30,4 +30,4 @@ spring:
     queue:
       product-change-availability: product.change.availability.queue
 warehouse:
-  base-path: http://warwhouseapp:8080/warehouse
+  base-path: http://warehouseapp:8080/warehouse
